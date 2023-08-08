@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="~{User/layouts/fragments :: head}">
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul  th:replace="~{User/layouts/fragments :: sidebar}">
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav  th:replace="~{User/layouts/fragments :: topbar}">
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- Content Row -->
+
+                <div th:replace="~{User/layouts/fragments :: order}"></div>
+                <!-- Content Row -->
+
+                <div class="row">
+
+                    <!-- Area Chart -->
+                    <div class="col-xl-8 col-lg-8">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">My Bookings</h6>
+
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <table class="table table-hover" id="myTable">
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col"> Booking Date</th>
+                                        <th scope="col">Service Type</th>
+                                        <th scope="col">Vehicle</th>
+                                        <th scope="col">Pick Up Date</th>
+                                        <th scope="col">Status</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="bookings: ${bookings}" class="text-center">
+                                        <td th:text="${bookings.bookingDate}"></td>
+                                        <td th:text="${bookings.serviceType}"></td>
+                                        <td th:text="${bookings.vehicle}"></td>
+                                        <td th:text="${bookings.pickUpDate}"></td>
+                                        <td th:text="${bookings.status}"></td>
+<!--                                        <td> <a th:href="@{/get_user_vehicle/{id}(id = ${userVehicle.id})}" class="btn  btn-md">-->
+<!--                                            <i class="fa fa-edit"></i></a>-->
+<!--                                            <a th:href="@{/delete_user_vehicle/{id}(id = ${userVehicle.id})}" class="btn  btn-sm">-->
+<!--                                                <i class="fa fa-trash"></i></a>-->
+<!--                                        </td>-->
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pie Chart -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Repair History</h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <table class="table table-hover" id="myTable2">
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col"> Repair Date</th>
+                                        <th scope="col">Service Type</th>
+                                        <th scope="col">Vehicle</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="repair: ${repair}" class="text-center">
+                                        <td th:text="${repair.bookingDate}"></td>
+                                        <td th:text="${repair.serviceType}"></td>
+                                        <td th:text="${repair.vehicle}"></td>
+
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content Row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Ger's Garage</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<div th:replace="~{User/layouts/fragments :: logout}"></div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">New Vehicle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+<script th:src="@{/js/index.js}"></script>
+
+<!-- Page level plugins -->
+
+
+
+</body>
+
+</html>

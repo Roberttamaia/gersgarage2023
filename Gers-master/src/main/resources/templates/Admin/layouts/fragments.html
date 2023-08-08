@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Ger's - Dashboard</title>
+    <!-- Custom fonts for this template-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <!-- Custom styles for this template-->
+    <link th:href="@{/css/sb-admin-2.css}" rel="stylesheet">
+
+</head>
+<body id="page-top">
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
+    th:fragment="sidebar">
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/Admin}">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <img class="logo" th:src="@{/images/logo.png}" width="70px" >
+            </div>
+            <div class="sidebar-brand-text mx-3">Ger's Garage</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" th:href="@{/Admin}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Interface
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Bookings</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" th:href="@{/all_bookings}">Bookings</a>
+                    <a class="collapse-item" th:href="@{/all_service}">Service</a>
+                    <a class="collapse-item" th:href="@{/all_fixed}">Fixed</a>
+                    <a class="collapse-item" th:href="@{/all_scrapped}">Scrapped</a>
+
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities4"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Spares</span>
+            </a>
+            <div id="collapseUtilities4" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Garage Spares:</h6>
+                    <a class="collapse-item" th:href="@{/new_spare}">New Spares</a>
+                    <a class="collapse-item" th:href="@{/all_spares}">All Spares</a>
+
+                </div>
+            </div>
+        </li>
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Employees</span>
+            </a>
+            <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" th:href="@{/new_employee}">New Employee</a>
+                    <a class="collapse-item" th:href="@{/all_employees}">All Employees</a>
+                </div>
+            </div>
+        </li>
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities5"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Clients</span>
+            </a>
+            <div id="collapseUtilities5" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" th:href="@{/all_users}">Clients</a>
+
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities7"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-file"></i>
+                <span>Invoices</span>
+            </a>
+            <div id="collapseUtilities7" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" th:href="@{/all_fixed}">New Invoice</a>
+<!--                    <a class="collapse-item" th:href="@{/all_invoices}">All Invoices</a>-->
+
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities8"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Services</span>
+            </a>
+            <div id="collapseUtilities8" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" th:href="@{/new_service}">New Service</a>
+                    <a class="collapse-item" th:href="@{/all_services}">All Service</a>
+                </div>
+            </div>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities9"
+               aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-car"></i>
+                <span>Vehicles</span>
+            </a>
+            <div id="collapseUtilities9" class="collapse" aria-labelledby="headingUtilities"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <!--                    <a class="collapse-item" th:href="@{/new_vehicle}">New Vehicle</a>-->
+                    <a class="collapse-item" th:href="@{/all_vehicles}">All Vehicles</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+
+        <!-- Nav Item - Pages Collapse Menu -->
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+
+    </ul>
+    <!-- End of Sidebar -->
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+                 th:fragment="topbar"
+            >
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - Messages -->
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <span th:text="${#authentication.getPrincipal().getUsername()}" class="mr-2 d-none d-lg-inline text-gray-600 small">
+                            <img class="img-profile rounded-circle">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+
+                            <a class="dropdown-item" th:href="@{/new_settings}">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Settings
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4" th:fragment="order">
+                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                   <div>
+                       <a th:href="@{/new_sale}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                               class="fas fa-download mr-2 fa-sm text-white-50"></i>Make Sale</a>
+                       <a th:href="@{/all_fixed}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                               class="fas fa-download mr-2 fa-sm text-white-50"></i>New Invoice</a>
+                       <a th:href="@{/roster}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                               class="fas fa-calender mr-2 fa-sm text-white-50"></i>Roster</a>
+                   </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 float-end">
+                        <div class="alert  alert-dismissible fade show" role="alert"
+                             th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true"><i class="fas fa-close mr-2 fa-sm text-white-50"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Ger's Garage</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Page level plugins -->
+
+
+
+</body>
+
+</html>

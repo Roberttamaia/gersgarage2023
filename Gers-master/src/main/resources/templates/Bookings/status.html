@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{Admin/layouts/fragments :: head}">
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <head th:replace="Admin/layouts/fragments :: sidebar">
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <head th:replace="Admin/layouts/fragments :: topbar">
+                    <!-- End of Topbar -->
+
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+
+                        <!-- Page Heading -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                            <a th:href="@{/all_bookings}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                    class="fas fa-eye fa-sm mr-2 text-white-50"></i>My Bookings</a>
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 float-end">
+                                <div class="alert  alert-dismissible fade show" role="alert"
+                                     th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true"><i class="fas fa-close mr-2 fa-sm text-white-50"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Content Row -->
+                        <div class="row">
+
+                            <!-- Content Column -->
+                            <div class="col-lg-10 mb-4 mx-auto">
+
+                                <!-- Project Card Example -->
+                                <div class="card shadow-lg mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary text-center">New Order</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form th:action="@{/newOrder/{id}(id = ${booking.id})}" method="post" th:object="${booking}">
+
+                                            <div class="row">
+                                                <!-- First Name -->
+                                                <div class="col-md-3">
+                                                    <div class="form-group ">
+                                                        <label for="type">Service Type</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" name="serviceType" th:field="*{serviceType}"
+                                                                   readonly>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group ">
+                                                        <label for="type">Vehicle</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="vehicle"
+                                                                   name="vehicle" th:field="*{vehicle}"
+                                                                   readonly
+                                                            />
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group ">
+                                                        <label for="email">Client:</label>
+                                                        <div class="inputGroupContainer">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="user"
+                                                                       name="user" th:field="*{user}"
+                                                                       readonly
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group ">
+                                                        <label for="email">Date:</label>
+                                                        <div class="inputGroupContainer">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="bookingDate"
+                                                                       name="bookingDate" th:field="*{bookingDate}"
+                                                                       readonly
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group ">
+                                                        <label for="desc">Description</label>
+                                                        <div class="inputGroupContainer">
+                                                            <textarea class="form-control" name="description" th:field="*{description}"  readonly></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group ">
+                                                        <label for="type">Mechanic</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="mechanic"
+                                                                   name="mechanic" th:field="*{mechanic}"
+                                                                   readonly
+                                                            />
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group ">
+                                                        <label for="type">Status</label>
+                                                        <div class="input-group">
+                                                            <select class="form-control custom-select" name="status" required>
+                                                                <option th:value="q" th:disabled="disabled" th:selected="selected">
+                                                                    Choose your option
+                                                                </option>
+                                                                <option th:value="Booked">Booked</option>
+                                                                <option th:value="Service">In Service</option>
+                                                                <option th:value="Fixed">Fixed</option>
+                                                                <option th:value="Collected">Collected</option>
+                                                                <option th:value="Scrapped">Scrapped</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group ">
+                                                        <label for="type">Pick up Date</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="pickUpDate"
+                                                                   name="pickUpDate" th:field="*{pickUpDate}"
+                                                                   readonly
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group ">
+                                                        <label for="type">Paid</label>
+                                                        <div class="input-group">
+                                                            <select class="form-control custom-select" name="paid" required>
+                                                                <option th:value="q" th:disabled="disabled" th:selected="selected">
+                                                                    Choose your option
+                                                                </option>
+                                                                <option th:value="paid">Paid</option>
+                                                                <option th:value="notPaid">Not Paid</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+
+                                            <div class="button mt-3">
+                                                <button class="btn btn-outline-dark btn-block" type="submit">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Ger's Garage</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div th:replace="~{User/layouts/fragments :: logout}"></div>
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+
+
+<!-- Core plugin JavaScript-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Custom scripts for all pages-->
+<script th:src="@{/js/sb-admin-2.min.js}"></script>
+<script th:src="@{/js/index.js}"></script>
+
+<!-- Page level plugins -->
+
+
+</body>
+
+</html>

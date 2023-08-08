@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="~{Admin/layouts/fragments :: head}">
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul  th:replace="~{Admin/layouts/fragments :: sidebar}">
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav  th:replace="~{Admin/layouts/fragments :: topbar}">
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- Content Row -->
+                <div th:replace="~{Admin/layouts/fragments :: order}"></div>
+                <div class="row">
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Earnings</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${totalAmount}"></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Bookings</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${bookingTotal}"></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calender fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Employees
+                                        </div>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" th:text="${number}"></div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="progress progress-sm mr-2">
+                                                    <div class="progress-bar bg-info" role="progressbar"
+                                                         style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                         aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-user-tie fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pending Requests Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            Spares Sold</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${totalSpares}"></div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-wrench fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content Row -->
+
+                <div class="row">
+
+                    <!-- Area Chart -->
+                    <div class="col-xl-12 col-lg-12 ">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">New Bookings</h6>
+
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <table class="table table-hover" id="myTable">
+                                    <thead class="thead-dark">
+                                    <tr class="text-center">
+                                        <th scope="col">Client</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Vehicle</th>
+                                        <th scope="col">Service</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="book: ${book}" class="text-center">
+                                        <td th:text="${book.user}"></td>
+                                        <td th:text="${book.bookingDate}"></td>
+                                        <td th:text="${book.vehicle}"></td>
+                                        <td th:text="${book.serviceType}"></td>
+                                        <td> <a th:href="@{/new_order/{id}(id = ${book.id})}" class="btn btn-sm btn-outline-primary">
+                                            Create Order</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Pie Chart -->
+
+                </div>
+
+                <div class="row">
+
+                    <!-- Area Chart -->
+                    <div class="col-xl-12 col-lg-12 ">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Fixed Booking</h6>
+
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <table class="table table-hover" id="myTable4">
+                                    <thead class="thead-dark">
+                                    <tr class="text-center">
+                                        <th scope="col">Client</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Vehicle</th>
+                                        <th scope="col">Service</th>
+                                        <th scope="col">Pick up</th>
+
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="fixed: ${fixed}" class="text-center">
+                                        <td th:text="${fixed.user}"></td>
+                                        <td th:text="${fixed.bookingDate}"></td>
+                                        <td th:text="${fixed.vehicle}"></td>
+                                        <td th:text="${fixed.serviceType}"></td>
+                                        <td th:text="${fixed.pickUpDate}"></td>
+
+                                        <td> <a th:href="@{/create_invoice/{id}(id=${fixed.id})}"  class="btn btn-sm btn-outline-primary">
+                                            Create Invoice</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Pie Chart -->
+
+                </div>
+                <!-- Content Row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+
+        </div>
+        <!-- End of Main Content -->
+
+
+        <!-- Modal -->
+
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Ger's Garage</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<div th:replace="~{User/layouts/fragments :: logout}"></div>
+
+
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+<script th:src="@{/js/index.js}"></script>
+
+<!-- Page level plugins -->
+
+
+
+</body>
+
+</html>
